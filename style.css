@@ -87,12 +87,16 @@
     outline: 0;
 }
 
-
-
-
 .search-container button{
     min-width: 100px;
     padding: 10px;
     cursor: pointer;
 }
+.footer-container{
 
+    text-align: center;
+    background-color: black;
+    color: #EAF0F1;
+    height: 100px;
+
+}
