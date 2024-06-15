@@ -1,52 +1,43 @@
-import { resList } from "../../utils/apidata";
-import RestaurantCard from "../RestaurantCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import RestaurantCard from '../RestaurantCard';
 
 const Body = () => {
 
   //State variable -> Super Powerful Variable 
 
-  const [ listOfRestaurant, setListOfRestaurant ] = useState(resList);
+  const [ listOfRestaurants, setListOfRestaurants ] = useState([]);
 
-  // const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
 
- 
+useEffect(() => {
+  fetchData();
+}, []);
 
-  const fetchData = async () => {
-    const data = await fetch(
-      'https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=28.4594965&lng=77.0266383&carousel=true&third_party_vendor=1'
+const fetchData = async () => {
+  const data = await fetch(
+    'https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=28.4594965&lng=77.0266383&carousel=true&third_party_vendor=1'
 );
 
-    const json = await data.json();
 
-    // console.log(json);
+  const json = await data.json();
 
-        console.log(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
-
-
-    // setListOfRestaurants(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
-    // setFilteredRestaurant(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
-
-  
-  };
+  console.log(json);
+  // * optional chaining
+  // setListOfRestaurants(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+  setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+};
 
 
-
-
-   
     return(
         <div className='body'>
-            <div className="search-container">
+            <div  className="search-container">
                 <input type="text" placeholder="Search Food or Restaurant" />
                 <button>Search</button>
+            
                 <button className="filter-btn"
                 onClick={() => {
                   const filterList = listOfRestaurant.filter((restaurant) => restaurant.data.avgRating > 4);
-                  setListOfRestaurant(filterList);
+                  setListOfRestaurants(filterList);
                 }}> 
                 Top Rated Restaurants</button>
             </div>
@@ -55,12 +46,14 @@ const Body = () => {
                     <RestaurantCard key={index} resData={resData} />
             ))} */}
             { 
-              listOfRestaurant.map((restaurant) => (
-                <RestaurantCard key= {restaurant.data.id} resData = {restaurant} />
+              listOfRestaurants.map((restaurant) => (
+                <RestaurantCard key= {restaurant.info.id} resData = {restaurant} />
               ))}
             </div>
         </div>
     )
-}
+};
 
 export default Body;
+
+
