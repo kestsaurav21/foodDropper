@@ -18,7 +18,7 @@ const Body = () => {
                 onClick={() => {
                   const filterList = listOfRestaurant.filter((restaurant) => restaurant.data.avgRating > 4);
                   setListOfRestaurant(filterList);
-                }}>
+                }}> 
                 Top Rated Restaurants</button>
             </div>
             <div className='res-container'>

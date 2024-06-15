@@ -4,7 +4,7 @@
   "description": "This is an Food Delivery Websites Built Using ReactJS",
   "main": "index.js",
   "scripts": {
-    "start": "npx parcel index.js",
+    "start": "npx parcel index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Saurabh",
