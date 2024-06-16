@@ -8,7 +8,7 @@ const Body = () => {
 
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
 
-  // const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
   const [searchText, setSearchText] = useState("");
 
@@ -21,7 +21,7 @@ const Body = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.65420&lng=77.23730&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.4594965&lng=77.0266383&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
 
       if (!response.ok) {
@@ -29,6 +29,7 @@ const Body = () => {
       }
 
       const json = await response.json();
+
 
       // Using optional chaining to safely access nested properties
       const restaurants =
@@ -41,6 +42,7 @@ const Body = () => {
 
       // Assuming setListOfRestaurants is a function defined elsewhere
       setListOfRestaurants(restaurants);
+      setFilteredRestaurant(restaurants);
     } catch (error) {
       setError(true);
 
@@ -71,7 +73,7 @@ const Body = () => {
               res.info.name.toLowerCase().includes(searchText.toLowerCase())
             );
 
-            setListOfRestaurants(filteredRestaurant);
+            setFilteredRestaurant(filteredRestaurant);
           }}>
           Search
         </button>
@@ -88,14 +90,14 @@ const Body = () => {
         </button>
       </div>
       <div className="res-container">
-        {/* {resList.map((resData, index) => (
-                    <RestaurantCard key={index} resData={resData} />
-            ))} */}
-        {listOfRestaurants.map((restaurant) => (
+        {filteredRestaurant.map((restaurant) => (
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>
     </div>
+
+   
+    
   );
 };
 
