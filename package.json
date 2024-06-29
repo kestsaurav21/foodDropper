@@ -4,8 +4,10 @@
   "description": "This is an Food Delivery Websites Built Using ReactJS",
   "main": "index.js",
   "scripts": {
-    "start": "npx parcel index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel index.html -p 1234 --open",
+    "build:parcel": "parcel build index.html --public-url ./ --no-source-maps",
+    "build": "npm run clean && npm run build:parcel",
+    "clean": "rm -rf dist/*"
   },
   "author": "Saurabh",
   "license": "ISC",
@@ -13,7 +15,7 @@
     "parcel": "^2.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.23.1"
+    "react-router-dom": "^6.24.0"
   },
   "devDependencies": {
     "process": "^0.11.10"
