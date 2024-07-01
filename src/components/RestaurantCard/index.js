@@ -1,4 +1,6 @@
+import { FiClock } from "react-icons/fi";
 import { CDN_URL } from "../../utils/constants";
+import { AiOutlineStar } from "react-icons/ai";
 
 const RestaurantCard = (props) => {
     const { resData } = props;
@@ -12,20 +14,37 @@ const RestaurantCard = (props) => {
     deliveryTime
   } = resData?.info;
 
-    return(
+  console.log(resData);
 
-        <div className='res-card' >
-            <img className='res-logo' alt='res-logo' 
-            src={CDN_URL + cloudinaryImageId
-              }/>
+  return (
+    <div className="res-card">
+      <div className="res-img">
+        <img
+          className="res-logo"
+          src={CDN_URL + cloudinaryImageId}
+          alt="Biryani"
+        />
+      </div>
 
-            <h3>{name}</h3>
-            <h4>{cuisines.join(", ")}</h4>
-            <h4>{avgRating} stars</h4>
-            <h4>{costForTwo}</h4>
-            <h4>{deliveryTime}</h4>
-        </div>
-
+      <div className="res-card-content">
+        <h3>{name}</h3>
+        <hr />
+        <em>{cuisines.join(', ')}</em>
+        <h4 className="avg-rating">
+          <span className="icons">
+            <AiOutlineStar />
+          </span>
+          <span>{avgRating} stars</span>
+        </h4>
+        <h4 className="item-price">₹ {costForTwo} </h4>
+        <h4 className="time">
+          <span className="icons">
+            <FiClock />
+          </span>
+          <span> {resData?.info?.sla?.deliveryTime} minutes</span>
+        </h4>
+      </div>
+    </div>
     )
 }
 
