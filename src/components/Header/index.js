@@ -1,10 +1,13 @@
 import React, {  useState } from 'react'
 import logo from '../../../assests/logo.png'
 import { Link } from 'react-router-dom';
+import useOnlineStatus from '../../utils/useOnlineStatus';
 
 const Header = () => {
 
     const [btn, setBtn] = useState("Login");
+
+    const onlineStatus = useOnlineStatus();
 
     // if no dependency array => useEffect is called after each render
     // if dependency array is empty [] => useEffect is called at initial render ( called once)
@@ -25,6 +28,9 @@ const Header = () => {
                 </li>
                 <li>
                     <Link to="/contact" className="link">Contact Us</Link>
+                </li>
+                <li>
+                    Online Status:{onlineStatus ? "🟢": "🔴"}
                 </li>
                 <li>
                     <Link to="/cart" className="link">Cart</Link>
