@@ -1,4 +1,5 @@
 import React from "react"
+import { USER_API } from "../utils/constants";
 
 
 class UserClass extends React.Component {
@@ -6,50 +7,57 @@ class UserClass extends React.Component {
         super(props);
         
         this.state = {
-            count:0,
-        
+            userInfo: {
+                name: "default",
+                location: "default",
+                login: "@dummy",
+                avatar_url: "http://dummy.com"
+            }
+            
         }
         console.log(this.props.name + " Child Constructor");
 
 
     }
 
-    componentDidMount(){
+    async componentDidMount(){
         console.log(this.props.name +" Child component did mount");
+        const data = await fetch(USER_API)
+
+        const json = await data.json();
+
+        this.setState({
+            userInfo: json
+        })
+
+        console.log(json);
+
     }
+
+    componentDidUpdate(){
+        console.log(this.props.name +" Child component did update");
+    }
+
+    componentWillUnmount(){
+        console.log(this.props.name +" Child component did unmount");
+
+    }
+
     render (){
 
         
-        const {name, location, contact} = this.props;
+        const {name, location, login, avatar_url} = this.state.userInfo;
 
-        const {count, count2} = this.state;
 
         console.log(this.props.name +" Child render");
         return (
     
             <div className="user-card">
-            <h3>Count: {count}</h3>
-
-            <button
-            onClick={()=> {
-                // Never update state variable directly
-                this.setState({
-                    count: this.state.count + 1
-                })
-            }}>
-                Count Increase
-            </button>
-
-            <button
-            onClick={()=> {
-                this.setState({
-                    count: this.state.count -1
-                })
-            }}>Count Decrease</button>
             
+            <img src={avatar_url}/>
             <h3>NAME: {name}</h3>
             <h3>LOCATION: {location}</h3>
-            <h3>Contact: {contact}</h3>
+            <h3>Github: {login}</h3>
             </div>
         )
     }

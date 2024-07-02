@@ -1,25 +1,46 @@
 import { useEffect, useState } from "react";
+import { USER_API } from "../../utils/constants";
+import Shimmer from "../Shimmer";
 
 const User = (props) => {
 
     useEffect(()=> {
-        // API CALL
+        fetchData()
     },[])
 
-    const [ count, setCount ] = useState(0);
+    const fetchData = async () => {
+        const data = await fetch(USER_API)
+
+        const json = await data.json()
+
+        console.log(json);
+
+        setUserInfo(json)
+    }
+
+    const [ userInfo, setUserInfo ] = useState({
+        name: "default",
+        location: "default",
+        login: "@dummy",
+        avatar_url: "http://dummy.com"
+    });
+
+    if (userInfo === null ) return <Shimmer/> ;
+
+    const {
+        avatar_url,
+        name,
+        login,
+        location
+    } = userInfo;
+
     return (  
 
         <div className="user-card">
-            <h3>Count: {count}</h3>
-            <button onClick={()=> {
-                setCount(count+1)
-            }}>Increase</button>
-            <button onClick={()=> {
-                setCount(count-1)
-            }}>Decrease</button>
-            <h3>NAME: {props.name}</h3>
-            <h3>LOCATION: {props.location}</h3>
-            <h3>Contact: {props.contact}</h3>
+            <img src={avatar_url}/>
+            <h3>NAME: {name}</h3>
+            <h3>LOCATION: {location}</h3>
+            <h3>Github: {login}</h3>
             
 
         </div>

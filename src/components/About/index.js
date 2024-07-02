@@ -22,6 +22,7 @@ import UserClass from '../UserClass'
 *  - Parent ComponentDidMount()=
 */
 
+
 class About extends React.Component {
   constructor(props) {
     super(props);
@@ -33,14 +34,13 @@ class About extends React.Component {
   }
 
   render() {
-     console.log('Parent Render');
+    //  console.log('Parent Render');
     return (
       <div className="about-page">
-        <h1>About Class Component</h1>
-        <h2>This is About Page</h2>
-        <UserClass name={'First'} location={'Faridabad'} />
-        <UserClass name={'Second'} location={'Dehradun'} />
-        <UserClass name={'Third'} location={'Gurgaon'} />
+        
+        <User name={"Saurabh Kestwal"} location={"Faridabad"} contact={"@sauravkestwal21"} />
+
+        {/* <UserClass name={'Third'} location={'Gurgaon'} /> */}
       </div>
     );
   }
