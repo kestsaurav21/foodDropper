@@ -36,7 +36,7 @@ const RestaurantCard = (props) => {
           </span>
           <span>{avgRating} stars</span>
         </h4>
-        <h4 className="item-price">₹ {costForTwo} </h4>
+        <h4 className="item-price">{costForTwo} </h4>
         <h4 className="time">
           <span className="icons">
             <FiClock />
