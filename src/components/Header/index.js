@@ -15,7 +15,7 @@ const Header = () => {
 
     return (
         <div className="flex justify-between">
-            <div className="logo-container">
+            <div className="logo-container cursor-pointer">
                 <img className="w-44" src={logo} alt="Logo" />
             </div>
             <div className='flex items-center'>
@@ -39,7 +39,7 @@ const Header = () => {
                     <Link to="/cart" className="link">Cart</Link>
                 </li>
 
-                <button className='bg-blue-600 text-white px-8 font-extrabold'
+                <button className='bg-sky-500 hover:bg-sky-700 text-white px-8 font-extrabold'
                     onClick={()=>{
                         btn === 'Login'
                         ? setBtn('Logout')
