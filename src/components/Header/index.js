@@ -14,29 +14,32 @@ const Header = () => {
     // if dependency array has [btn] => useEffect is called when there is an updated in btn.
 
     return (
-        <div className="header">
+        <div className="flex justify-between">
             <div className="logo-container">
-                <img className="logo" src={logo} alt="Logo" />
+                <img className="w-44" src={logo} alt="Logo" />
             </div>
-            <div className='nav-items'>
-                <ul>
-                <li>
-                    <Link to="/" className="link">Home</Link>
-                </li>
-                <li>
-                    <Link to="/about" className="link">About Us</Link>
-                </li>
-                <li>
-                    <Link to="/contact" className="link">Contact Us</Link>
-                </li>
-                <li>
+            <div className='flex items-center'>
+                <ul className='flex space-x-4'>
+                <li className="px-4">
                     Online Status:{onlineStatus ? "🟢": "🔴"}
                 </li>
-                <li>
+                <li className="px-4">
+                    <Link to="/" className="link">Home</Link>
+                </li>
+                <li className="px-4">
+                    <Link to="/about" className="link">About</Link>
+                </li>
+                <li className="px-4">
+                    <Link to="/contact" className="link">Contact</Link>
+                </li>
+                <li className="px-4">
+                <Link to="/grocery" className="link">Grocery</Link>
+                </li>
+                <li className="px-4">
                     <Link to="/cart" className="link">Cart</Link>
                 </li>
 
-                <button className='login'
+                <button className='bg-blue-600 text-white px-8 font-extrabold'
                     onClick={()=>{
                         btn === 'Login'
                         ? setBtn('Logout')

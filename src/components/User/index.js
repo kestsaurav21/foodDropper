@@ -36,13 +36,11 @@ const User = (props) => {
 
     return (  
 
-        <div className="user-card">
-            <img src={avatar_url}/>
-            <h3>NAME: {name}</h3>
-            <h3>LOCATION: {location}</h3>
-            <h3>Github: {login}</h3>
-            
-
+        <div className="p-2.5 shadow-sm bg-white mx-auto w-1/2 text-center">
+            <img className="w-50 h-50 rounded-full shadow-md mx-auto" src={avatar_url}/>
+            <h3 className="mt-6">NAME: {name}</h3>
+            <h3 className="mt-6">LOCATION: {location}</h3>
+            <h3 className="mt-6">Github: {login}</h3>
         </div>
     )
 }
