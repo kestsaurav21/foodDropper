@@ -36,7 +36,7 @@ class About extends React.Component {
   render() {
     //  console.log('Parent Render');
     return (
-      <div className="about-page">
+      <div className="mt-100">
         
         <User name={"Saurabh Kestwal"} location={"Faridabad"} contact={"@sauravkestwal21"} />
 
